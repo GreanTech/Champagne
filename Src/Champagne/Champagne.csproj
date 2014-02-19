@@ -7,8 +7,8 @@
     <ProjectGuid>{8EDF89D5-298C-492A-9ED3-DFE89CAD69F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Champagne</RootNamespace>
-    <AssemblyName>Champagne</AssemblyName>
+    <RootNamespace>Grean.Champagne</RootNamespace>
+    <AssemblyName>Grean.Champagne</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

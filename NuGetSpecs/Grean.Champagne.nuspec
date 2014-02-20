@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Champagne</id>
+    <version>0.1.0</version>
+    <title>Champagne</title>
+    <authors>Grean ApS</authors>
+    <owners>Grean ApS</owners>
+    <projectUrl>https://github.com/GreanTech/Champagne</projectUrl>
+    <licenseUrl>https://github.com/GreanTech/Champagne/blob/master/LICENCE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      Much-needed extensions and utilities for working with IEnumerable&lt;T&gt; in .NET. Methods the BCL ought to have, but doesn't.
+    </description>
+    <copyright>Copyright Grean ApS 2014</copyright>
+  </metadata>
+  <files>
+    <file src="Grean.Champagne.dll" target="lib\net45" />
+    <file src="Grean.Champagne.XML" target="lib\net45" />
+  </files>
+</package>

@@ -1,4 +1,4 @@
-﻿module Grean.Champagne.FSharp
+﻿namespace Grean.Champagne.FSharp
 
 open System
 open System.Reflection

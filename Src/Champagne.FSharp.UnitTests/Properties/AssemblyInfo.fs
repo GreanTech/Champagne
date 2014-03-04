@@ -1,4 +1,4 @@
-﻿module Grean.Champagne.FSharp.UnitTests
+﻿namespace Grean.Champagne.FSharp.UnitTests
 
 open System
 open System.Reflection

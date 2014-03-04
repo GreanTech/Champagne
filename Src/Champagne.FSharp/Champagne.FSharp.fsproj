@@ -44,6 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.fs" />
+    <Compile Include="Dom.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Champagne\Champagne.csproj">
+      <Name>Champagne</Name>
+      <Project>{8edf89d5-298c-492a-9ed3-dfe89cad69f8}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

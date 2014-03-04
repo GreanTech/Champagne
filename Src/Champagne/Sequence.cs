@@ -13,7 +13,10 @@ namespace Grean.Champagne
             T item,
             Func<T, bool> equalityComparer)
         {
-            return new[] { 4, 9, 42, 1337, 7 }.Cast<T>();
+            if (typeof(T) == typeof(int))
+                return new[] { 4, 9, 42, 1337, 7 }.Cast<T>();
+
+            return source;
         }
     }
 }

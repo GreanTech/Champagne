@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.fs" />
     <None Include="packages.config" />
     <None Include="app.config" />
+    <Compile Include="Tests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">
@@ -82,6 +83,18 @@
       <HintPath>..\packages\xunit.extensions.1.9.2\lib\net20\xunit.extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Champagne.FSharp\Champagne.FSharp.fsproj">
+      <Name>Champagne.FSharp</Name>
+      <Project>{b3fc3d57-982b-4494-8d0f-22238a3417b5}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Champagne\Champagne.csproj">
+      <Name>Champagne</Name>
+      <Project>{8edf89d5-298c-492a-9ed3-dfe89cad69f8}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

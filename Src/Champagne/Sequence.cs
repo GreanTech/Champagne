@@ -10,13 +10,14 @@ namespace Grean.Champagne
     {
         public static IEnumerable<T> Replace<T>(
             this IEnumerable<T> source,
-            T item,
+            T replacementValue,
             Func<T, bool> equalityComparer)
         {
             if (equalityComparer == null)
                 throw new ArgumentNullException("equalityComparer");
 
-            return source.Select(x => equalityComparer(x) ? item : x);
+            return source.Select(
+                x => equalityComparer(x) ? replacementValue : x);
         }
     }
 }

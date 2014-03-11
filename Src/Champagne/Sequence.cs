@@ -13,6 +13,9 @@ namespace Grean.Champagne
             T item,
             Func<T, bool> equalityComparer)
         {
+            if (equalityComparer == null)
+                throw new ArgumentNullException("equalityComparer");
+
             return source.Select(x => equalityComparer(x) ? item : x);
         }
     }

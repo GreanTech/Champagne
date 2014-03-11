@@ -4,6 +4,7 @@ open System
 open Grean.Champagne
 open Grean.Champagne.FSharp
 open FsCheck
+open FsCheck.Prop
 open FsCheck.Xunit
 open Xunit.Extensions
 
@@ -38,6 +39,11 @@ type ReplaceTests<'T when 'T : equality>() =
         let expected = s |> List.map (fun x -> if comparer x then v else x)
         let actual = s |> Dom.Replace v comparer |> Seq.toList
         actual = expected
+
+    [<Property(MaxTest = 10)>]
+    member this.ReplaceWithNullSourceThrows (v : 'T) =        
+        throws<ArgumentNullException, _>
+            (lazy (Dom.Replace v (fun _ -> true) null))
 
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()

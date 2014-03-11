@@ -26,6 +26,12 @@ type ReplaceTests<'T when 'T : equality>() =
         let actual = s |> Dom.Replace v (fun x -> x = t) |> Seq.toList
         actual = expected
 
+    [<Property>]
+    member this.ReplaceReturnsSourceWhenFunctionIsAlwaysFalse (s : 'T list) v =
+        let expected = s |> Seq.toList
+        let actual = s |> Dom.Replace v (fun _ -> false) |> Seq.toList
+        actual = expected
+
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()
 type ReplaceTestsOfGuid()    = inherit ReplaceTests<Guid>()

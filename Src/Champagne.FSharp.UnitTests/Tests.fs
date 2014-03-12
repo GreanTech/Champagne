@@ -34,10 +34,16 @@ type ReplaceTests<'T when 'T : equality>() =
         actual = expected
 
     [<Property>]
-    member this.ReplaceReturnCorrectResultBasedOnFunction (s : 'T list) v =
-        let comparer x = x = v
-        let expected = s |> List.map (fun x -> if comparer x then v else x)
-        let actual = s |> Dom.Replace v comparer |> Seq.toList
+    member this.ReplaceReturnCorrectResultBasedOnFunction
+        (s : 'T list)
+        (oldValue : 'T)
+        newValue =
+
+        let comparer = oldValue.Equals
+        let expected =
+            s
+            |> List.map (fun x -> if comparer x then newValue else x)
+        let actual = s |> Dom.Replace newValue comparer |> Seq.toList
         actual = expected
 
     [<Property(MaxTest = 10)>]

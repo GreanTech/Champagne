@@ -43,7 +43,7 @@ type ReplaceTests<'T when 'T : equality>() =
     [<Property(MaxTest = 10)>]
     member this.ReplaceWithNullSourceThrows (v : 'T) =        
         throws<ArgumentNullException, _>
-            (lazy (Dom.Replace v (fun _ -> true) null))
+            (lazy (Dom.Replace v (fun _ -> true) null |> Seq.toList))
 
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()

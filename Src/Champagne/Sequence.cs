@@ -19,5 +19,13 @@ namespace Grean.Champagne
             return source.Select(
                 x => equalityComparer(x) ? replacementValue : x);
         }
+
+        public static IEnumerable<T> Replace<T>(
+            this IEnumerable<T> source,
+            T replacementValue,
+            IEquatable<T> equalityComparer)
+        {
+            return new[] { default(T) };
+        }
     }
 }

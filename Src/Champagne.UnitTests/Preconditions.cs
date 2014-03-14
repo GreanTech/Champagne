@@ -15,7 +15,9 @@ namespace Grean.Champagne.UnitTests
             var seq = new List<object> { new object(), new object() };
             var dummyValue = new object();
             Assert.Throws<ArgumentNullException>(
-                () => seq.Replace(dummyValue, null).ToList());
+                () => seq.Replace(
+                    dummyValue,
+                    (Func<object, bool>)null).ToList());
         }
     }
 }

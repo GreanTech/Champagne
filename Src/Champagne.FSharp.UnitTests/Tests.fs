@@ -51,6 +51,21 @@ type ReplaceTests<'T when 'T : equality>() =
         throws<ArgumentNullException, _>
             (lazy (Dom.Replace v (fun _ -> true) null |> Seq.toList))
 
+    [<Property>]
+    member this.FSharpReplaceWithComparerIsSameAsCSharpReplaceWithComparer
+        (s : 'T list)
+        (v : 'T)
+        (t : 'T) =
+
+        let equatable = 
+            { new IEquatable<'T> with
+                member this.Equals x = x = t }
+        
+        let actual = s |> Dom.ReplaceE v equatable |> Seq.toList
+
+        let expected = s.Replace(v, equatable) |> Seq.toList
+        actual = expected
+
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()
 type ReplaceTestsOfGuid()    = inherit ReplaceTests<Guid>()

@@ -25,7 +25,7 @@ namespace Grean.Champagne
             T replacementValue,
             IEquatable<T> equalityComparer)
         {
-            return new[] { default(T) };
+            return source;
         }
     }
 }

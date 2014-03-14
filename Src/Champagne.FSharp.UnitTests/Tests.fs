@@ -66,6 +66,17 @@ type ReplaceTests<'T when 'T : equality>() =
         let expected = s.Replace(v, equatable) |> Seq.toList
         actual = expected
 
+    [<Property>]
+    member this.ReplaceReturnsSourceWhenComparerIsAlwaysFalse (s : 'T list) v =
+        let comparer = 
+            { new IEquatable<'T> with
+                member this.Equals x = false }
+
+        let actual = s |> Dom.ReplaceE v comparer |> Seq.toList
+        
+        let expected = s |> Seq.toList
+        actual = expected
+
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()
 type ReplaceTestsOfGuid()    = inherit ReplaceTests<Guid>()

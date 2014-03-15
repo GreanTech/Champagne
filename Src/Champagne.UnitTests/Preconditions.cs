@@ -19,5 +19,16 @@ namespace Grean.Champagne.UnitTests
                     dummyValue,
                     (Func<object, bool>)null).ToList());
         }
+
+        [Fact]
+        public void ReplaceWithNullEquatableThrows()
+        {
+            var seq = new List<object> { new object(), new object() };
+            var dummyValue = new object();
+            Assert.Throws<ArgumentNullException>(
+                () => seq.Replace(
+                    dummyValue,
+                    (IEquatable<object>)null).ToList());
+        }
     }
 }

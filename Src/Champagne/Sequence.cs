@@ -25,6 +25,9 @@ namespace Grean.Champagne
             T replacementValue,
             IEquatable<T> equalityComparer)
         {
+            if (equalityComparer == null)
+                throw new ArgumentNullException("equalityComparer");
+
             return source.Select(
                 x => equalityComparer.Equals(x) ? replacementValue : x);
         }

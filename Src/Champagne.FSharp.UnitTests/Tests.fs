@@ -92,6 +92,14 @@ type ReplaceTests<'T when 'T : equality>() =
         let actual = s |> Dom.ReplaceE newValue equatable |> Seq.toList
         actual = expected
 
+    [<Property(MaxTest = 10)>]
+    member this.ReplaceEWithNullSourceThrows (v : 'T) =
+        let equatable = 
+            { new IEquatable<'T> with
+                member this.Equals x = false }
+        throws<ArgumentNullException, _>
+            (lazy (Dom.ReplaceE v equatable null |> Seq.toList))
+
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()
 type ReplaceTestsOfString()  = inherit ReplaceTests<string>()
 type ReplaceTestsOfGuid()    = inherit ReplaceTests<Guid>()

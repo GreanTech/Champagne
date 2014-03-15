@@ -52,7 +52,7 @@ type ReplaceTests<'T when 'T : equality>() =
             (lazy (Dom.Replace v (fun _ -> true) null |> Seq.toList))
 
     [<Property>]
-    member this.FSharpReplaceWithComparerIsSameAsCSharpReplaceWithComparer
+    member this.FSharpReplaceWithComparerIsSameAsCSharpReplaceWithEquatable
         (s : 'T list)
         (v : 'T)
         (t : 'T) =
@@ -67,14 +67,29 @@ type ReplaceTests<'T when 'T : equality>() =
         actual = expected
 
     [<Property>]
-    member this.ReplaceReturnsSourceWhenComparerIsAlwaysFalse (s : 'T list) v =
-        let comparer = 
+    member this.ReplaceReturnsSourceWhenEquatableIsAlwaysFalse (s : 'T list) v =
+        let equatable = 
             { new IEquatable<'T> with
                 member this.Equals x = false }
 
-        let actual = s |> Dom.ReplaceE v comparer |> Seq.toList
+        let actual = s |> Dom.ReplaceE v equatable |> Seq.toList
         
         let expected = s |> Seq.toList
+        actual = expected
+
+    [<Property>]
+    member this.ReplaceReturnsCorrectResultBasedOnEquatable
+        (s : 'T list)
+        (oldValue : 'T)
+        newValue =
+
+        let equatable = 
+            { new IEquatable<'T> with
+                member this.Equals x = oldValue.Equals x }
+        let expected =
+            s
+            |> List.map (fun x -> if equatable.Equals x then newValue else x)
+        let actual = s |> Dom.ReplaceE newValue equatable |> Seq.toList
         actual = expected
 
 type ReplaceTestsOfInt()     = inherit ReplaceTests<int>()

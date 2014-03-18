@@ -16,5 +16,15 @@ namespace Grean.Champagne.UnitTests
             var actual = seq.Replace(9, i => i == 2);
             Assert.Equal(new[] { 4, 9, 42, 1337, 7 }, actual);
         }
+
+        [Fact]
+        public void ReplaceStringInSequence()
+        {
+            var seq = new[] { "foo", "bar", "baz", "qux", "corge", "grault" };
+            var actual = seq.Replace("quux", "qux");
+            Assert.Equal(
+                new[] { "foo", "bar", "baz", "quux", "corge", "grault" },
+                actual);
+        }
     }
 }
